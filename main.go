@@ -71,7 +71,7 @@ func (m *marketplaceplugin) Run(cliConnection plugin.CliConnection, args []strin
 	schemaParams := schemaResult.Schemas.ServiceInstances.Create.Parameters
 
 	if schemaParams == nil {
-		fmt.Printf("Plan %s does not support configuration parameter schemas", plan)
+		fmt.Printf("Plan %s does not support configuration parameter schemas\n", plan)
 		os.Exit(0)
 	}
 
