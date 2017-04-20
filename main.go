@@ -55,8 +55,12 @@ func (m *marketplaceplugin) Run(cliConnection plugin.CliConnection, args []strin
 		os.Exit(0)
 	}
 
-	if service == "" || plan == "" {
-		log.Fatal("Must supply both a service and a plan name")
+	if service != "" && plan == "" {
+		_, err := cliConnection.CliCommand("m", "-s", service)
+		if err != nil {
+			log.Fatal(err)
+		}
+		os.Exit(0)
 	}
 
 	fmt.Printf("Getting configuration parameter schemas for service %s and plan %s\n", service, plan)
