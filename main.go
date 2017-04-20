@@ -47,12 +47,16 @@ func (m *marketplaceplugin) Run(cliConnection plugin.CliConnection, args []strin
 		log.Fatal(err)
 	}
 
-	if service == "" || plan == "" {
+	if service == "" && plan == "" {
 		_, err := cliConnection.CliCommand("m")
 		if err != nil {
 			log.Fatal(err)
 		}
 		os.Exit(0)
+	}
+
+	if service == "" || plan == "" {
+		log.Fatal("Must supply both a service and a plan name")
 	}
 
 	fmt.Printf("Getting configuration parameter schemas for service %s and plan %s\n", service, plan)
@@ -67,7 +71,7 @@ func (m *marketplaceplugin) Run(cliConnection plugin.CliConnection, args []strin
 	schemaParams := schemaResult.Schemas.ServiceInstances.Create.Parameters
 
 	if schemaParams == nil {
-		fmt.Println("Service does not support configuration parameter schemas")
+		fmt.Printf("Plan %s does not support configuration parameter schemas", plan)
 		os.Exit(0)
 	}
 
