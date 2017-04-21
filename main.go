@@ -71,17 +71,17 @@ func (m *marketplaceplugin) Run(cliConnection plugin.CliConnection, args []strin
 	}
 
 	fmtGreen.Print("OK\n\n")
+	fmt.Printf("Create Service Configuration Parameters:\n\n")
 
 	schemaParams := schemaResult.Schemas.ServiceInstances.Create.Parameters
 
 	if schemaParams == nil {
-		fmt.Printf("Plan %s does not support configuration parameter schemas\n", plan)
+		fmt.Println("Not available")
 		os.Exit(0)
 	}
 
 	out, err := json.MarshalIndent(schemaParams, "", "  ")
 
-	fmt.Printf("Create Service Configuration Parameters:\n\n")
 	fmt.Println(string(out))
 }
 
