@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+export CF_API=
+export CF_USERNAME=
+export CF_PASSWORD=
+export CF_ORG=
+export CF_SPACE=
+export CF_SERVICE=
+export CF_PLAN_WITH_SCHEMA=
+export CF_PLAN_WITHOUT_SCHEMA=
